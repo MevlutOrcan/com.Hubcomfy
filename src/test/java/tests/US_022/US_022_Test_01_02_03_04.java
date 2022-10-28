@@ -62,7 +62,7 @@ public class US_022_Test_01_02_03_04 extends TestBaseRapor {
 
       // 9- Kullanici tum urunleri gorebilmek icin "Shop Now" linkine tiklar
         hubConfyPage.shopNowLink.click();
-        extentTest.info("9- Kullanici indirimli urunleri gorebilmek icin \"Shop Now\" linkine tiklar");
+        extentTest.info("9- Kullanici tum urunleri gorebilmek icin \"Shop Now\" linkine tiklar");
 
     }
 
