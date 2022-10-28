@@ -22,6 +22,8 @@ public class US_012_StoreManagerHesapKontrolu extends TestBaseRapor {
 
     Actions actions = new Actions(Driver.getDriver());
 
+    // yes
+
     @Test
     public void ortakAdimlar() {
 
