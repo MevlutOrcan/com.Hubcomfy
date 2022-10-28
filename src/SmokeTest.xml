@@ -1,0 +1,12 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+<suite name="Smoke Test">
+    <test name="Smoke Test01">
+        <classes>
+            <class name="tests.US_001.US_001_TC_011">
+                <methods>
+                    <include name="tC011"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+</suite>

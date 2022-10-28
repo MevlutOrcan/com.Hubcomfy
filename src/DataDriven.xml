@@ -1,0 +1,9 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+<suite name="istenen methodlar">
+    <test name="istenenMethodCalistir">
+        <classes>
+            <class name="tests.US_010.US_010_TC_002">
+            </class>
+        </classes>
+    </test>
+</suite>

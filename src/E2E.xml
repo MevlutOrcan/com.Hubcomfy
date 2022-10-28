@@ -1,0 +1,13 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+<suite name="E2E-UI Test">
+    <test name="E2E-UI Test01">
+        <classes>
+            <class name="tests.US_003.US_003_TC_005Order">
+                <methods>
+                    <include name="test01Order"/>
+                </methods>
+            </class>
+
+        </classes>
+    </test>
+</suite>
