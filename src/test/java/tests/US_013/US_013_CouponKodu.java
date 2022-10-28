@@ -1,5 +1,6 @@
 package tests.US_013;
 
+import com.github.javafaker.Faker;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
@@ -20,6 +21,7 @@ public class US_013_CouponKodu extends TestBaseRapor {
     US_013_014_015_Page us_013_014_015_page= new US_013_014_015_Page();
     Actions actions = new Actions(Driver.getDriver());
     Select select;
+    Faker faker = new Faker();
     @Test
     public void loginAndCouponsTabTest() throws InterruptedException {
         extentTest=extentReports.createTest("loginAndCouponsTabTest","Login olabilme ve Coupons Tab a girebilme");
@@ -70,8 +72,9 @@ public class US_013_CouponKodu extends TestBaseRapor {
         //12-Kullanici "Add Coupon" yazisinin gorunurlugunu dogrular
         Assert.assertTrue(us_013_014_015_page.addCouponText.isDisplayed());
         extentTest.info("Add Coupon yazisinin gorunurlugu dogrulandi");
-        //13-Kullanici "Code" box a codu girer(code 1234A)
-        us_013_014_015_page.codeBox.sendKeys("1234A");
+        //13-Kullanici "Code" box a codu girer
+        String couponCode=faker.code().asin();
+        us_013_014_015_page.codeBox.sendKeys(couponCode);
         extentTest.info("Code box a kod girildi");
         //14-Kullanici "Submit" bottonuna tiklar
         actions.sendKeys(Keys.END).perform();
@@ -83,28 +86,30 @@ public class US_013_CouponKodu extends TestBaseRapor {
         actions.sendKeys(Keys.PAGE_DOWN).perform();
         ReusableMethods.jsclick(us_013_014_015_page.couponsTab);
         ReusableMethods.waitFor(2);
-        Assert.assertEquals(us_013_014_015_page.couponCodeData.getText(),"1234A");
+        Assert.assertEquals(us_013_014_015_page.couponCodeData.getText(),couponCode);
         extentTest.pass("Coupon kodunun gorundugu dogrulandi");
-        Driver.closeDriver();
+
     }
     @Test (dependsOnMethods ="loginAndCouponsTabTest" )
     public void TC_002_DescriptionTest() throws InterruptedException {
         extentTest=extentReports.createTest("TC_002_DescriptionTest","Description girebilme");
-        //11-Kullanici "Edit" buttonuna tiklar
-        ReusableMethods.waitFor(4);
+        //11-Kullanici "Coupons" sekmesine tiklar
+        ReusableMethods.waitFor(2);
+        us_013_014_015_page.couponsTab.click();
+        extentTest.info("Coupons sekmesine tiklandi");
+        //12-Kullanici "edit buttonuna tiklar
         us_013_014_015_page.editButton.click();
         extentTest.info("Edit buttonuna tiklandi");
-        //12-Kullanici "Description"  box a tanimi girer (Description: New Member)
+        //13-Kullanici "Description"  box a tanimi girer (Description: New Member)
         us_013_014_015_page.descriptionBox.sendKeys("New Member");
         extentTest.info("Description  box a tanim girildi ");
-        //13-Kullanici "Submit" bottonuna tiklar
+        //14-Kullanici "Submit" bottonuna tiklar
         Thread.sleep(2000);
         us_013_014_015_page.submitButton.click();
         extentTest.info("Submit bottonuna tiklandi");
-        //14-Kullanici girdigi descriptionin gorunurlugunu dogrular
+        //15-Kullanici girdigi descriptionin gorunurlugunu dogrular
         Assert.assertEquals(us_013_014_015_page.newMemberText.getText(), "New Member");
         extentTest.pass("Descriptionin gorunurlugun dogrulandi");
-
     }
 
     @Test (dependsOnMethods ="loginAndCouponsTabTest" )
