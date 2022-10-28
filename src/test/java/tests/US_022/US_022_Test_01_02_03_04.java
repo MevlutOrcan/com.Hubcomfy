@@ -12,6 +12,7 @@ import utilities.ReusableMethods;
 import utilities.TestBaseRapor;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class US_022_Test_01_02_03_04 extends TestBaseRapor {
@@ -88,11 +89,17 @@ public class US_022_Test_01_02_03_04 extends TestBaseRapor {
         hubConfyPage.sortByLink.click();
 
         String expectedUrunler = "Indirimli Urunler";
+        List<String> tumUrunler = new ArrayList<>();
         List<WebElement> tumUrunlerList = hubConfyPage.sortByUrunlerList;
+
+        for (WebElement w:tumUrunlerList) {
+            tumUrunler.add(w.getText());
+        }
         System.out.println("*** Sort By DropDownBox List: ***"+"\n"+"========");
         tumUrunlerList.forEach(t-> System.out.println(t.getText()));
 
-        Assert.assertFalse(tumUrunlerList.contains(expectedUrunler));
+        Assert.assertFalse(tumUrunler.contains(expectedUrunler));
+
         extentTest.info("11- Kullanici Sort By'a ait acilir kutudan \"indirimli urunler\" secenegini secerek indirimli urunleri siralar");
 
       // 12- Kullanici Sort By'a ait acilir kutudan secim yapmadan, "Default sorting" seceneginin default secenek olarak gorundugunu dogrular
